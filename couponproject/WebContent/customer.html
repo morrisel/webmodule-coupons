@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>customer coupon system</title>
+
+<script>
+
+
+function openTab(evt, cityName) {
+	
+	angular.element(document.getElementById('span')).scope().clearAll();
+
+	// Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+    
+}
+function newTab(){openTab(onclick, "customerLogin")}
+</script>
+
+
+<script src="js/angular.min.js"></script>
+
+
+<style>
+td#t01{padding: 30px}
+</style>
+</head>
+<body onload="newTab()">
+<script src="js/cp.js"></script>
+
+<div ng-app="myApp" ng-controller="myCtrl" id="span">
+<table>
+	<tr><h3 align="center">customer coupon system</h3></tr>
+	<tr>
+		
+		<td valign="top">
+			<ul class="tab">
+ 				<li><a href="#" class="tablinks" onclick="openTab(event, 'customerLogin')">login/logout</a></li><br>
+  				<li><a href="#" class="tablinks" onclick="openTab(event, 'obtainCoupon')">obtain coupon</a></li>
+			</ul>
+			<ul>
+				<a href="company.html">company system</a><br>
+				<a href="index.html">admin system</a>
+			</ul>
+		</td>
+		
+		<td id="t01">
+		
+			<div id="customerLogin" class="tabcontent">
+ 			 	<h4>login</h4>
+ 			 	username<br>
+  				<input type="text" ng-model="customeruser.login" placeholder="login" value={{customeruser.login}}><br>
+  				password<br>
+  				<input type="password" placeholder="password" ng-model="customeruser.password" value={{customeruser.password}}><br><br>
+  				<input type="submit" value="login" ng-click="customerlogin()">
+				<input type="submit" value="logout" ng-click="customerlogout()">
+			</div>
+			
+			<div id="obtainCoupon" class="tabcontent">
+  				<h4>obtain coupon</h4>
+  				coupon id<br>
+  				<input type="number" placeholder="coupon id" ng-model="obtaincoupon.couponid"><br><br>
+  				<input type="submit" value="obtain coupon {{obtaincoupon.couponid}}" ng-click="obtainCoupon()">
+			</div>
+		</td>
+		<td id="t01" valign="top">
+				<h4>system message:</h4>
+				<div style="color:blue;" data-ng-bind="infoMessage">general information</div>
+				<div style="color:red;" data-ng-bind="errorMessage">error messages</div>
+		</td>
+
+	</tr>
+</table>
+
+	
+<table >
+	<td rowspan="100" valign="top">
+	<input type="submit" value="getAllCoupons" ng-click="getAllCoupons()" id="allCoupons"><br><br>
+	<input type="submit" value="getAllCustomerCoupons" ng-click="getAllCustomerCoupons()" id="customerCoupons"><br><br>
+	get coupons by type<br>
+	 <form name="myForm">
+		<select name="sel" ng-model="customerCouponsByType.ctype" ng-mouseup="getCustomerCouponsByType()" id="customerCouponsByType">
+      	<option value="RESTAURANTS">RESTAURANTS</option>
+      	<option value="ELECTRICITY">ELECTRICITY</option>
+      	<option value="FOOD">FOOD</option>
+      	<option value="HEALTH">HEALTH</option>
+      	<option value="SPORTS">SPORTS</option>
+      	<option value="CAMPING">CAMPING</option>
+      	<option value="TRAVELLING">TRAVELLING</option>
+      	<option value="HOTELS">HOTELS</option>
+      	<option value="CAR_SERVICES">CAR_SERVICES</option>
+      	<option value="REPAIRS">REPAIRS</option>
+      	<option value="SOFTWARE">SOFTWARE</option>
+      	<option value="HARDWARE">HARDWARE</option>
+      	<option value="OTHER">OTHER</option>
+    	</select><br>
+	</form>
+	price<br>
+	<input type="number" ng-model="custCPrice.price" placeholder="price" ng-mouseup="getCustomerCouponByPrice()" id value={{customercouponByPrice.price}}><br>
+  	<input type="submit" value="customerCouponByPrice" ng-click="getCustomerCouponByPrice()" id="customerCouponByPrice">
+	<br>
+	<br>
+	<input type="submit" value="clear" ng-click="clearCustomerSheet()" id="clearsheet"><br>
+	</td>
+	<td valign="top">
+	<table border="1px">
+	<tr data-ng-repeat="rec in allCoupons">
+		<td>{{rec.id}}</td>
+		<td>{{rec.title}}</td>
+		<td>{{rec.startDate}}</td>
+		<td>{{rec.endDate}}</td>
+		<td>{{rec.amount}}</td>
+		<td>{{rec.type}}</td>
+		<td>{{rec.message}}</td>
+		<td>{{rec.price}}</td>
+		<td>{{rec.image}}</td>
+	</tr>
+	<tr data-ng-repeat="rec in customerCoupons">
+		<td>{{rec.id}}</td>
+		<td>{{rec.title}}</td>
+		<td>{{rec.startDate}}</td>
+		<td>{{rec.endDate}}</td>
+		<td>{{rec.amount}}</td>
+		<td>{{rec.type}}</td>
+		<td>{{rec.message}}</td>
+		<td>{{rec.price}}</td>
+		<td>{{rec.image}}</td>
+	</tr>
+	<tr data-ng-repeat="rec in customerCouponsByType">
+		<td>{{rec.id}}</td>
+		<td>{{rec.title}}</td>
+		<td>{{rec.startDate}}</td>
+		<td>{{rec.endDate}}</td>
+		<td>{{rec.amount}}</td>
+		<td>{{rec.type}}</td>
+		<td>{{rec.message}}</td>
+		<td>{{rec.price}}</td>
+		<td>{{rec.image}}</td>
+	</tr>
+		<tr data-ng-repeat="rec in customerCouponByPrice">
+		<td>{{rec.id}}</td>
+		<td>{{rec.title}}</td>
+		<td>{{rec.startDate}}</td>
+		<td>{{rec.endDate}}</td>
+		<td>{{rec.amount}}</td>
+		<td>{{rec.type}}</td>
+		<td>{{rec.message}}</td>
+		<td>{{rec.price}}</td>
+		<td>{{rec.image}}</td>
+	</tr>
+	</table>
+	
+	</td>
+</table>
+</div>
+
+</body>
+</html>

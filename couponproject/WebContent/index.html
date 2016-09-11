@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>admin coupon system</title>
+
+<script>
+
+
+function openTab(evt, cityName) {
+	
+	angular.element(document.getElementById('span')).scope().clearAll();
+
+	// Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+    
+}
+function newTab(){openTab(onclick, "Login")}
+</script>
+
+
+<script src="js/angular.min.js"></script>
+
+
+<style>
+td#t01{padding: 30px}
+</style>
+</head>
+<body onload="newTab()">
+<script src="js/cp.js"></script>
+
+<div ng-app="myApp" ng-controller="myCtrl" id="span">
+<table>
+	<tr><h3 align="center">admin coupon system</h3></tr>
+	<tr>
+		
+		<td valign="top">
+			<ul class="tab">
+ 				<li><a href="#" class="tablinks" onclick="openTab(event, 'Login')">login/logout</a></li><br>
+  				<li><a href="#" class="tablinks" onclick="openTab(event, 'createCompany')">create new company</a></li>
+ 				<li><a href="#" class="tablinks" onclick="openTab(event, 'gur')">get/update/remove company</a></li><br>
+ 				
+ 				<li><a href="#" class="tablinks" onclick="openTab(event, 'createcustomer')">add customer</a></li>
+ 				<li><a href="#" class="tablinks" onclick="openTab(event, 'gurc')">get/update/remove customer</a></li>
+			</ul>
+			<ul>
+				<a href="company.html">company system</a><br>
+				<a href="customer.html">customer system</a>
+			</ul>
+		</td>
+		
+		<td id="t01">
+		
+			<div id="Login" class="tabcontent">
+ 			 	<h4>login</h4>
+ 			 	username(admin/1234)<br>
+  				<input type="text" ng-model="user.login" placeholder="login" value={{user.login}}><br>
+  				password<br>
+  				<input type="password" placeholder="password" ng-model="user.password" value={{user.password}}><br><br>
+  				<input type="submit" value="login" ng-click="login()">
+				<input type="submit" value="logout" ng-click="logout()">
+			</div>
+			
+			<div id="createnewcompany" class="tabcontent">
+  				<h4>create new company</h4>
+  				company name<br>
+  				<input type="text" placeholder="company name" ng-model="newCompany.companyName"><br>
+  				email<br> 
+  				<input type="text" placeholder="email" ng-model="newCompany.email"><br>
+  				password<br> 
+  				<input type="text" placeholder="password" ng-model="newCompany.password"><br><br>  				
+  				<input type="submit" value="create company" ng-click="createNewCompany()">
+			</div>
+			
+			<div id="gur" class="tabcontent">
+  				<h4>get/update/remove company</h4>
+  				company ID<br>
+  				<input type="number" placeholder="company ID" ng-model="company.id"><br>
+  				company name<br>
+  				<input type="text" placeholder="company name" ng-model="company.companyName" disabled="disabled"><br>
+  				email<br>
+  				<input type="text" placeholder="email" ng-model="company.email"><br>
+  				password<br>
+  				<input type="text" placeholder="password" ng-model="company.password"><br><br>
+  				<input type="submit" value="get company {{company.id}}" ng-click="getCompany()">
+  				<input type="submit" value="update company {{company.id}}" ng-click="updateCompany()">
+  				<input type="submit" value="remove company {{company.id}}" ng-click="removeCompany()">
+			</div>
+			
+			<div id="createcustomer" class="tabcontent">
+  				<h4>get/update/remove company</h4>
+  				customer name<br>
+  				<input type="text" placeholder="custname" ng-model="newcustomer.custName"><br>
+  				password<br>
+  				<input type="text" placeholder="password" ng-model="newcustomer.password"><br><br>
+  				<input type="submit" value="create customer" ng-click="createCustomer()">
+			</div>
+			
+			<div id="gurc" class="tabcontent">
+  				<h4>get/update/remove customer</h4>
+  				customer ID<br>
+  				<input type="number" placeholder="ID" ng-model="customer.id"><br>
+  				customer name<br>
+  				<input type="text" placeholder="customer name" ng-model="customer.custName" disabled="disabled"><br>
+  				email<br>
+  				<input type="text" placeholder="email" ng-model="customer.password"><br><br>
+  				<input type="submit" value="get customer {{customer.id}}" ng-click="getCustomer()">
+  				<input type="submit" value="update customer {{customer.id}}" ng-click="updateCustomer()">
+  				<input type="submit" value="remove customer {{customer.id}}" ng-click="removeCustomer()">
+			</div>
+		</td>
+		<td id="t01" valign="top">
+				<h4>system message:</h4>
+				<div style="color:blue;" data-ng-bind="infoMessage">general information</div>
+				<div style="color:red;" data-ng-bind="errorMessage">error messages</div>
+		</td>
+
+	</tr>
+</table>
+
+	
+<table >
+	<td rowspan="100" valign="top">
+	<input type="submit" value="getCustomerList" ng-click="getAllCustomers()" id="customers"><br><br>
+	<input type="submit" value="getCompanyList" ng-click="getCompanyList()" id="companies"><br><br>
+	<input type="submit" value="clear" ng-click="cleatSheet()" id="clearsheet"><br>
+	</td>
+	<td valign="top">
+	<table border="1px">
+	<tr data-ng-repeat="rec in customers" >
+		<td>{{rec.id}}</td>
+		<td>{{rec.custName}}</td>
+		<td>{{rec.password}}</td>
+	</tr>
+	<tr data-ng-repeat="rec in companies">
+		<td>{{rec.id}}</td>
+		<td>{{rec.companyName}}</td>
+		<td>{{rec.email}}</td>
+		<td>{{rec.password}}</td>
+	</tr>
+	</table>
+	</td>
+</table>
+</div>
+
+</body>
+</html>
