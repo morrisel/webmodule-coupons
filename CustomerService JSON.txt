@@ -1,0 +1,37 @@
+
+
+connect 'jdbc:derby://localhost:1527/CouponDB';
+
+// CustomerService
+
+
+// login - POST
+http://localhost:8080/managecoupons/couponsys/customer/login
+{
+	"login":"AVI",
+	"password":"1111"
+}
+{
+	"login":"BENNY",
+	"password":"2222"
+}
+
+// logout - POST
+http://localhost:8080/managecoupons/couponsys/customer/logout
+
+
+// purchaseCoupon/{id} - POST
+http://localhost:8080/managecoupons/couponsys/customer/purchaseCoupon/{id}
+
+
+// purchaseCoupon - GET
+http://localhost:8080/managecoupons/couponsys/customer/getCoupons
+
+
+// getCouponsByType/{type} - GET
+http://localhost:8080/managecoupons/couponsys/customer/getCouponsByType/{type}
+
+
+// getCouponsByPrice/{price} - GET
+http://localhost:8080/managecoupons/couponsys/customer/getCouponsByPrice/{price}
+
