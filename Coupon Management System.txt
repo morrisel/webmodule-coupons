@@ -10,9 +10,9 @@ The modularize Coupon Management System project written in Java language with fo
 The project Coupon Management System enables companies to produce coupons as part of advertising and marketing campaigns that they exist.
 The system also has customers. The Customers can purchase coupons. 
 Coupons are limited in quantity and in date of term. Тhe customer is limited to one of each coupon.  
-Access to the system is divided into three consumer types: 
+The access to the system is divided into three consumer types: 
 Administrator – allows to manage the list of companies and customers
-Administrator – allows to manage the list of coupons of the company
+Company – allows to manage the list of coupons of the company
 Customer – allows to purchase the coupons
 
 
