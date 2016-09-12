@@ -1,0 +1,23 @@
+
+Final Project – Coupon Management System
+
+The modularize Coupon Management System project written in Java language with following layers:
+1st layer – is a bean layer
+2nd layer – is a DAO (DAO - Data Access Object) layer
+3rd layer – is a façade (BL – Business Logic) layer
+4st layer – is a web (JAX-RS technology) layer
+
+The project Coupon Management System enables companies to produce coupons as part of advertising and marketing campaigns that they exist.
+The system also has customers. The Customers can purchase coupons. 
+Coupons are limited in quantity and in date of term. Тhe customer is limited to one of each coupon.  
+Access to the system is divided into three consumer types: 
+Administrator – allows to manage the list of companies and customers
+Administrator – allows to manage the list of coupons of the company
+Customer – allows to purchase the coupons
+
+
+
+** The manual guide how to run and test the project it coming soon.
+
+
+Morris Elkanaev
