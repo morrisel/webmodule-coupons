@@ -1,5 +1,5 @@
 
-Final Project – Coupon Management System
+Final Project – Coupon Management System (managecoupons)
 
 The modularize Coupon Management System project written in Java language with following layers:
 1st layer – is a bean layer
